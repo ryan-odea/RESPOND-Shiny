@@ -32,7 +32,11 @@ shinyServer(function(input, output) {
                     bins = bins)
     
     #Map Creation
-    leaflet(counties) %>% 
+    leaflet(counties,
+            options = leafletOptions(minZoom = 7.8,
+                                     maxZoom = 7.8,
+                                     zoomControl = FALSE,
+                                     dragging = FALSE)) %>% 
       addPolygons(fillColor = ~pal(countyData$rand),
                   weight = 2,
                   opacity = 1,
@@ -53,7 +57,7 @@ shinyServer(function(input, output) {
                     direction = "auto"
                   )) %>% 
       addLegend(pal = pal, values = ~countyData$rand,
-                title = "Opiod Deaths", position = "bottomright")
+                title = "Opiod Deaths", position = "bottomleft")
   }) 
 
 })
